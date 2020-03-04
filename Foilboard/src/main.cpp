@@ -1,10 +1,12 @@
 #include <mbed.h>
 
+DigitalOut led1(LED1);
+
 int main() {
-
-  // put your setup code here, to run once:
-
   while(1) {
-    // put your main code here, to run repeatedly:
+    led1 = 1;
+    wait(1);
+    led1 = 0;
+    wait(1);
   }
 }
