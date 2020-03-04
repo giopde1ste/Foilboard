@@ -1,12 +1,15 @@
 #include <mbed.h>
 
-DigitalOut led1(LED1);
-
+InterruptIn button(BUTTON1);
+DigitalOut led(LED1);
+ 
+void flip() {
+    led = !led;
+}
+ 
 int main() {
-  while(1) {
-    led1 = 1;
-    wait(1);
-    led1 = 0;
-    wait(1);
-  }
+    button.rise(&flip);  // attach the address of the flip function to the rising edge
+    while(1) {           // wait around, interrupts will interrupt this!
+      ;
+    }
 }
