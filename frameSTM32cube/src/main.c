@@ -2,14 +2,14 @@
 #include <stm32f0xx_hal.h>
 #endif
 
-                                                // Pins assigments for STM32F0xx
-#define LED_PIN_GREEN                           GPIO_PIN_9
-#define LED_PIN_BLUE                            GPIO_PIN_8
-#define LED_GPIO_PORT                           GPIOC
-#define LED_GPIO_CLK_ENABLE()                   __HAL_RCC_GPIOC_CLK_ENABLE()
-#define USER_BUTTON                             GPIO_PIN_0
-#define USER_BUTTON_GPIO_PORT                   GPIOA
-#define USER_BUTTON_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOA_CLK_ENABLE()
+                                        // Pins assigments for STM32F0xx
+#define LED_PIN_GREEN                   GPIO_PIN_9
+#define LED_PIN_BLUE                    GPIO_PIN_8
+#define LED_GPIO_PORT                   GPIOC
+#define LED_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOC_CLK_ENABLE()
+#define USER_BUTTON                     GPIO_PIN_0
+#define USER_BUTTON_GPIO_PORT           GPIOA
+#define USER_BUTTON_GPIO_CLK_ENABLE()   __HAL_RCC_GPIOA_CLK_ENABLE()
 
 
 void EXTI0_1_IRQHandler(void){
@@ -93,26 +93,26 @@ int main(void){
 
 // @Vraag : Wat doet dit?
 void SysTick_Handler(void){
-  HAL_IncTick();
+    HAL_IncTick();
 }
 
 void NMI_Handler(void){
 }
 
 void HardFault_Handler(void){
-  while (1) {}
+    while(1){}
 }
 
 void MemManage_Handler(void){
-  while (1) {}
+    while(1){}
 }
 
 void BusFault_Handler(void){
-  while (1) {}
+    while(1){}
 }
 
 void UsageFault_Handler(void){
-  while (1) {}
+    while(1){}
 }
 
 void SVC_Handler(void){

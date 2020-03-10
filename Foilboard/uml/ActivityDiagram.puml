@@ -1,0 +1,34 @@
+@startuml foilboard
+start
+:Turn on board;
+repeat :Turn contoller on;
+    :Connect to Bleutooth Controller;
+repeat while (Controller connected) is (No)
+->Yes;
+:Start control user;
+partition "interupteble region" {
+    split
+    while (Board is On)
+        ->On;
+        if (Gas pedel) then (On)
+            :Turn motor on;
+        else (off)
+            :Turn motor off;
+        endif
+    endwhile
+    split again
+    :Deadmanswitch<
+    ->interrupt;
+    (A)
+    detach
+    endsplit
+}
+:stop motor;
+:disconnect Bleutooth controller;
+stop
+(A)
+:Turn motor off;
+:Disable motor;
+end
+@enduml
+
