@@ -91,7 +91,6 @@ int main(void){
     }
 }
 
-
 // @Vraag : Wat doet dit?
 void SysTick_Handler(void){
   HAL_IncTick();
