@@ -20,7 +20,7 @@ void _log(){
     _period = pwmReciever.period();
     _pulse = pwmReciever.pulsewidth(); 
     pc.printf("The period is = %f Seconds\nThe pulsewidth is = %f Seconds\n\n", _period, _pulse);
-    //testReciever.pulsewidth_ms(_pulse); //TODO does not work
+    //testReciever.pulsewidth_ms(_pulse); //TODO does not work //iets
 }
 
 int main() {
