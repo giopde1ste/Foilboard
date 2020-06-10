@@ -85,6 +85,9 @@ int main(void){
     HAL_Init();
     GPIO_Init();
 
+    USART_InitTypeDef Usart_InitStructure;
+    
+
     while (1){
         HAL_GPIO_TogglePin(LED_GPIO_PORT, LED_PIN_GREEN);
         HAL_Delay(250);
