@@ -1,39 +1,21 @@
 #include <mbed.h>
-#include <PwmIn.h>
 #include "pindef.h"
+#include "pwmTransform.h"
 
 InterruptIn button(BUTTON1);
 DigitalOut led(LED1);
-
-PwmOut testReciever(PWM_OUT); //PB_3
-PwmIn pwmReciever(PB_2);
-
-Serial pc(SERIAL_TX, SERIAL_RX);
-Ticker serialSyntax;
-
-float _period = 0.0, _pulse = 0.0;
+pwmTransform pwmTransmitter(PWM_IN, PWM_IN);
 
 void flip()
 {
     led = !led;
 }
 
-void _log()
-{
-    _period = pwmReciever.period();
-    _pulse = pwmReciever.pulsewidth();
-    pc.printf("The period is = %f Seconds\nThe pulsewidth is = %f Seconds\n\n", _period, _pulse);
-    //testReciever.pulsewidth_ms(_pulse); //TODO does not work //iets
-}
-
 int main()
 {
-    testReciever.period_ms(20);
-    testReciever.pulsewidth_ms(2);
-    //testReciever.pulsewidth_us(2000);
-    button.rise(&flip); // attach the address of the flip function to the rising edge
-    serialSyntax.attach(&_log, 1);
-
+    button.rise(&flip);                                            // attach the address of the flip function to the rising edge
+    button.rise(&pwmTransmitter, &pwmTransform::switchLimitation); // attach the member function switchLimitationstate from the object pwmTransmitter to the rise of the button interrupt
+    pwmTransmitter.attachPwmToTicker(UPDATE_PERIOD_PWM);
     while (1)
     { // wait around, interrupts will interrupt this!
         ;
