@@ -1,5 +1,6 @@
 #include <mbed.h>
 #include <PwmIn.h>
+#include "pindef.h"
 
 InterruptIn button(BUTTON1);
 DigitalOut led(LED1);
