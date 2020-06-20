@@ -32,7 +32,7 @@ void pwmTransform::transformPulseWidth(int *pulseWidth)
 
 void pwmTransform::attachPwmToTicker(float updatetime)
 {
-    pwmUpdateticker.attach(this, &pwmTransform::updatePwm, updatetime);
+    pwmUpdateticker.attach(callback(this, &pwmTransform::updatePwm), updatetime);
 }
 
 void pwmTransform::switchLimitation()
