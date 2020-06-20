@@ -5,7 +5,7 @@ pwmTransform::pwmTransform(PinName PWMpinIn, PinName PWMpinOut) : pwmReciever(PW
     createPwm();
 }
 
-void pwmTransform::createPwm() //TODO: setup class for pwmTransmitter & pwmReciever called pwmTransform
+void pwmTransform::createPwm()
 {
     pwmTransmitter.pulsewidth_ms(PERIOD_LENGTH_MS);
     pwmTransmitter.pulsewidth_ms(PULSEWIDTH_LENGHT_MS_0);
