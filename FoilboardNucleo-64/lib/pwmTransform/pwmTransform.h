@@ -23,7 +23,6 @@ public:
     void switchLimitation();
     void setPulseWidthMaxLim(int pulsewidthMaxLimus);
 
-
 private:
     void createPwm(int periodLengthms, int pulseWidthLengtms);
     void transformPulseWidth(int *_pulseWidth);
