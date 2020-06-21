@@ -3,26 +3,32 @@
 #include <mbed.h>
 #include <PwmIn.h>
 
-#define PERIOD_LENGTH_MS 20
-#define PULSEWIDTH_LENGHT_MS_0 1
-#define PULSEWIDTH_LENGHT_MS_MAX_LIM 1500
-#define PULSEWIDTH_MODIFIER_S_TO_US 1000000
-#define LIMITATION_DEFAULT_ON_STARTUP false
+// default values, can be changed with functions in class
+#define PERIOD_LENGTH_MS 20 // can be changed in class constructor
+#define PULSEWIDTH_LENGHT_MS_0 1 // can be changed in class constructor
+#define PULSEWIDTH_LENGHT_US_MAX_LIM 1500 // can be changed with pwmTransform::setPulseWidthMaxLim();
+#define LIMITATION_DEFAULT_ON_STARTUP false // can be changed with pwmTransform::setPulseWidthMaxLim(int pulsewidthMaxLimus);
+
+// default values, CAN NOT be changed and should not be changed
+#define PULSEWIDTH_MODIFIER_S_TO_US 1000000 // Used to convert seconds to microseconds in pwmTransform::updatePwm();
+
 
 class pwmTransform
 {
 public:
-    pwmTransform(PinName PWMpinIn, PinName PWMpinOut);
+    pwmTransform(PinName PWMpinIn, PinName PWMpinOut, int periodStartms = PERIOD_LENGTH_MS, int pulseWidthStartms = PULSEWIDTH_LENGHT_MS_0);
     void updatePwm();
-    void attachPwmToTicker(float updatetime);
+    void attachPwmToTicker(float _updatetime);
     bool limitation = LIMITATION_DEFAULT_ON_STARTUP;
     void switchLimitation();
+    void setPulseWidthMaxLim(int pulsewidthMaxLimus);
+
 
 private:
-    void createPwm();
-    void transformPulseWidth(int *pulseWidth);
+    void createPwm(int periodLengthms, int pulseWidthLengtms);
+    void transformPulseWidth(int *_pulseWidth);
     float _pulseWidthSec;
-    int _pulseWidthus;
+    int _pulseWidthus, _pulsewidthMaxLimus = PULSEWIDTH_LENGHT_US_MAX_LIM;
     PwmIn pwmReciever;
     PwmOut pwmTransmitter;
     Ticker pwmUpdateticker;
