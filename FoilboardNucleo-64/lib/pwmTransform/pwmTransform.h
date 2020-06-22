@@ -20,7 +20,7 @@ public:
     void updatePwm();
     void attachPwmToTicker(float _updatetime);
     bool limitation = LIMITATION_DEFAULT_ON_STARTUP;
-    void switchLimitation();
+    bool switchLimitation();
     void setPulseWidthMaxLim(int pulsewidthMaxLimus);
 
 private:

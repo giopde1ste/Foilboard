@@ -67,11 +67,12 @@ void pwmTransform::attachPwmToTicker(float updatetime)
  * To SET the limitation, use pwmTransform::limitation = true;
  * To RESET the limitation use pwmTransform::limitation = false;
  * Default state is set in pwmTransform.h with the marco LIMITATION_DEFAULT_ON_STARTUP, default value is false.
- * @return void
+ * @return state of the limitation
  */
-void pwmTransform::switchLimitation()
+bool pwmTransform::switchLimitation()
 {
     limitation = !limitation;
+    return limitation;
 }
 
 /*
