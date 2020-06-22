@@ -31,9 +31,9 @@ void pwmTransform::createPwm(int periodLengthms, int pulseWidthLengtms)
  */
 void pwmTransform::updatePwm()
 {
-    _pulseWidthSec = pwmReciever.pulsewidth(); // Returns float pulsewidth in seconds
+    _pulseWidthSec = pwmReciever.pulsewidth();                           // Returns float pulsewidth in seconds
     _pulseWidthus = (int)(_pulseWidthSec * PULSEWIDTH_MODIFIER_S_TO_US); // Converst the pulsewidth form <float>seconds to <int>microseconds
-    if (limitation) // checks if the limitation is active
+    if (limitation)                                                      // checks if the limitation is active
     {
         transformPulseWidth(&_pulseWidthus); // locks the pulsewidth to _pulsewidthMaxLimus if the pulsewidth is above _pulsewidthMaxLimus
     }

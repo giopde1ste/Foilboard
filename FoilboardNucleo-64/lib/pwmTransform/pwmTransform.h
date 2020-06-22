@@ -4,14 +4,13 @@
 #include <PwmIn.h>
 
 // default values, can be changed with functions in class
-#define PERIOD_LENGTH_MS 20 // can be changed in class constructor
-#define PULSEWIDTH_LENGHT_MS_0 1 // can be changed in class constructor
-#define PULSEWIDTH_LENGHT_US_MAX_LIM 1500 // can be changed with pwmTransform::setPulseWidthMaxLim();
+#define PERIOD_LENGTH_MS 20                 // can be changed in class constructor
+#define PULSEWIDTH_LENGHT_MS_0 1            // can be changed in class constructor
+#define PULSEWIDTH_LENGHT_US_MAX_LIM 1500   // can be changed with pwmTransform::setPulseWidthMaxLim();
 #define LIMITATION_DEFAULT_ON_STARTUP false // can be changed with pwmTransform::setPulseWidthMaxLim(int pulsewidthMaxLimus);
 
 // default values, CAN NOT be changed and should not be changed
 #define PULSEWIDTH_MODIFIER_S_TO_US 1000000 // Used to convert seconds to microseconds in pwmTransform::updatePwm();
-
 
 class pwmTransform
 {
