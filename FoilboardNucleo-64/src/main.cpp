@@ -15,10 +15,10 @@ void fliplim()
 
 int main()
 {
-    pc.printf("Starting initializing sequence");
+    pc.printf("Starting initializing sequence\n");
     button.rise(&fliplim);                               // attach the address of the flip function to the rising edge
     pwmTransmitter.attachPwmToTicker(UPDATE_PERIOD_PWM); // attach the PWM signal to the ticker object with the interval time as UPDATE_PERIOD_PWM
-    pc.printf("end of initializing sequence");
+    pc.printf("end of initializing sequence\n");
     while (1)
     { // wait around, interrupts will interrupt this!
         ;
