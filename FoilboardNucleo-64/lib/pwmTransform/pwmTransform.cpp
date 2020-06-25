@@ -35,7 +35,7 @@ void pwmTransform::updatePwm()
     _pulseWidthus = (int)(_pulseWidthSec * PULSEWIDTH_MODIFIER_S_TO_US); // Converst the pulsewidth form <float>seconds to <int>microseconds
     if (limitation)                                                      // checks if the limitation is active
     {
-        transformPulseWidth(&_pulseWidthus); // locks the pulsewidth to _pulsewidthMaxLimus if the pulsewidth is above _pulsewidthMaxLimus
+        limitPulseWidth(&_pulseWidthus); // locks the pulsewidth to _pulsewidthMaxLimus if the pulsewidth is above _pulsewidthMaxLimus
     }
     pwmTransmitter.pulsewidth_us(_pulseWidthus); // sets the pulsewidth
 }
@@ -44,12 +44,22 @@ void pwmTransform::updatePwm()
  * @brief TODO: put an explanation of the function here
  * @return void
  */
-void pwmTransform::transformPulseWidth(int *pulseWidth)
+void pwmTransform::limitPulseWidth(int *pulseWidth)
 {
     if (*pulseWidth >= _pulsewidthMaxLimus)
     { // simple conversion, if the pulseWidth exeeds the max lenght, set the puleWidth as the max lenght
         *pulseWidth = _pulsewidthMaxLimus;
     }
+}
+
+/*
+ * @brief TODO: put an explanation of the function here
+ * @param int pulseWidth = input pulsewidth
+ * @return int new pulse width
+ */
+int pwmTransform::transformPulseWidth(int pulseWidth)
+{
+    // TODO: reate a function that conversts pulseWidth so that it will use the whole range of the input (1ms to 2ms duty cycle)
 }
 
 /*
@@ -83,4 +93,14 @@ bool pwmTransform::switchLimitation()
 void pwmTransform::setPulseWidthMaxLim(int pulsewidthMaxLimus)
 {
     _pulsewidthMaxLimus = pulsewidthMaxLimus;
+}
+
+/*
+ * @brief Detach the update function form ticker and set the pulsewidth to PULSEWIDTH_LENGHT_MS_0, once reset the ticker should be reatatched with attachPwmToTicker()
+ * @return void
+ */
+void pwmTransform::setPwmToMin()
+{
+    pwmUpdateticker.detach();
+    pwmTransmitter.pulsewidth_ms(PULSEWIDTH_LENGHT_MS_0);
 }

@@ -21,10 +21,12 @@ public:
     bool limitation = LIMITATION_DEFAULT_ON_STARTUP;
     bool switchLimitation();
     void setPulseWidthMaxLim(int pulsewidthMaxLimus);
+    void setPwmToMin();
 
 private:
     void createPwm(int periodLengthms, int pulseWidthLengtms);
-    void transformPulseWidth(int *_pulseWidth);
+    void limitPulseWidth(int *_pulseWidth);
+    int transformPulseWidth(int pulseWidth);
     float _pulseWidthSec;
     int _pulseWidthus, _pulsewidthMaxLimus = PULSEWIDTH_LENGHT_US_MAX_LIM;
     PwmIn pwmReciever;
